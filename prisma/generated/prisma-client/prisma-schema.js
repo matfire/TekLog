@@ -426,7 +426,6 @@ type Post {
   author: User!
   category: Category
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
-  imageUrl: String!
 }
 
 type PostConnection {
@@ -441,7 +440,6 @@ input PostCreateInput {
   author: UserCreateOneWithoutPostsInput!
   category: CategoryCreateOneInput
   comments: CommentCreateManyWithoutPostInput
-  imageUrl: String!
 }
 
 input PostCreateManyWithoutAuthorInput {
@@ -459,7 +457,6 @@ input PostCreateWithoutAuthorInput {
   content: String!
   category: CategoryCreateOneInput
   comments: CommentCreateManyWithoutPostInput
-  imageUrl: String!
 }
 
 input PostCreateWithoutCommentsInput {
@@ -467,7 +464,6 @@ input PostCreateWithoutCommentsInput {
   content: String!
   author: UserCreateOneWithoutPostsInput!
   category: CategoryCreateOneInput
-  imageUrl: String!
 }
 
 type PostEdge {
@@ -482,8 +478,6 @@ enum PostOrderByInput {
   title_DESC
   content_ASC
   content_DESC
-  imageUrl_ASC
-  imageUrl_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -494,7 +488,6 @@ type PostPreviousValues {
   id: ID!
   title: String!
   content: String!
-  imageUrl: String!
 }
 
 input PostScalarWhereInput {
@@ -540,20 +533,6 @@ input PostScalarWhereInput {
   content_not_starts_with: String
   content_ends_with: String
   content_not_ends_with: String
-  imageUrl: String
-  imageUrl_not: String
-  imageUrl_in: [String!]
-  imageUrl_not_in: [String!]
-  imageUrl_lt: String
-  imageUrl_lte: String
-  imageUrl_gt: String
-  imageUrl_gte: String
-  imageUrl_contains: String
-  imageUrl_not_contains: String
-  imageUrl_starts_with: String
-  imageUrl_not_starts_with: String
-  imageUrl_ends_with: String
-  imageUrl_not_ends_with: String
   AND: [PostScalarWhereInput!]
   OR: [PostScalarWhereInput!]
   NOT: [PostScalarWhereInput!]
@@ -583,19 +562,16 @@ input PostUpdateInput {
   author: UserUpdateOneRequiredWithoutPostsInput
   category: CategoryUpdateOneInput
   comments: CommentUpdateManyWithoutPostInput
-  imageUrl: String
 }
 
 input PostUpdateManyDataInput {
   title: String
   content: String
-  imageUrl: String
 }
 
 input PostUpdateManyMutationInput {
   title: String
   content: String
-  imageUrl: String
 }
 
 input PostUpdateManyWithoutAuthorInput {
@@ -627,7 +603,6 @@ input PostUpdateWithoutAuthorDataInput {
   content: String
   category: CategoryUpdateOneInput
   comments: CommentUpdateManyWithoutPostInput
-  imageUrl: String
 }
 
 input PostUpdateWithoutCommentsDataInput {
@@ -635,7 +610,6 @@ input PostUpdateWithoutCommentsDataInput {
   content: String
   author: UserUpdateOneRequiredWithoutPostsInput
   category: CategoryUpdateOneInput
-  imageUrl: String
 }
 
 input PostUpdateWithWhereUniqueWithoutAuthorInput {
@@ -702,20 +676,6 @@ input PostWhereInput {
   comments_every: CommentWhereInput
   comments_some: CommentWhereInput
   comments_none: CommentWhereInput
-  imageUrl: String
-  imageUrl_not: String
-  imageUrl_in: [String!]
-  imageUrl_not_in: [String!]
-  imageUrl_lt: String
-  imageUrl_lte: String
-  imageUrl_gt: String
-  imageUrl_gte: String
-  imageUrl_contains: String
-  imageUrl_not_contains: String
-  imageUrl_starts_with: String
-  imageUrl_not_starts_with: String
-  imageUrl_ends_with: String
-  imageUrl_not_ends_with: String
   AND: [PostWhereInput!]
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]

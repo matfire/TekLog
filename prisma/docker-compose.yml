@@ -1,13 +1,7 @@
 version: '3'
 services:
-  # server:
-  #   build: ./server
-  #   environment:
-  #     PRISMA_ENDPOINT: http://prisma:4466/
-  #   ports:
-  #     - 4000:4000
   prisma:
-    image: prismagraphql/prisma:1.26
+    image: prismagraphql/prisma:1.27
     restart: always
     ports:
     - "4466:4466"
@@ -25,7 +19,6 @@ services:
             rawAccess: true
             port: 3306
             migrations: true
-            database: "prisma_blog"
   mysql:
     image: mysql:5.7
     restart: always

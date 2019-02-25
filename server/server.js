@@ -1,3 +1,4 @@
+const multer = require('multer')
 const express = require("express")
 const {prisma} = require("./generated/prisma-client")
 const bodyParser = require('body-parser')
@@ -5,12 +6,30 @@ const bcrypt = require('bcrypt')
 const config = require("./config")
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
-
+const path = require('path')
+const morgan = require('morgan')
 const app = express()
+
+
+//multer setup
+
+const storage = multer.diskStorage({
+	destination:"./public",
+	filename: function(req, file, callback) {
+		callback(null, file.fieldname + '-' + Date.now())
+	}
+})
+
+var upload = multer({storage})
+
+
+
 
 app.use(bodyParser.json())
 app.use(cors())
 app.use(bodyParser.urlencoded({extended:false}))
+app.use(morgan('dev'))
+app.use(express.static(__dirname + "public"));
 app.get("/users", (req, res) => {
 	prisma.users().then(users => res.send(users))
 })
@@ -32,7 +51,7 @@ app.post("/login", async (req, res) => {
 app.post("/register", async (req, res) => {
 	let hashedpasswd = bcrypt.hashSync(req.body.password, 12)
 	const user = await prisma.createUser({name:req.body.name, email:req.body.email, password:hashedpasswd, username:req.body.username})
-	let token = jwt.sign({username:user.username}, config.secret, {expiresIn:'24hh'})
+	let token = jwt.sign({username:user.username}, config.secret, {expiresIn:'24h'})
 	res.send({username:user.username, email:user.email, id:user.id, token: token})
 })
 
@@ -47,6 +66,7 @@ app.get("/posts", async (req, res) => {
 		title
 		content
 		id
+		imageUrl
 		author {
 			username
 			id
@@ -63,9 +83,10 @@ app.get("/posts/:id", async (req, res) => {
 	res.json(post)
 })
 
-app.post("/posts", async(req, res) => {
+app.post("/posts",async(req, res) => {
 	let {title, content, id} = req.body
-	let post = await prisma.createPost({title, content, author: {connect: {id}}})
+	let imageUrl = req.body.image
+	let post = await prisma.createPost({title, content, author: {connect: {id}}, imageUrl})
 	res.json(post)
 })
 
@@ -90,7 +111,7 @@ app.get("/posts/:id/comments", async(req, res) => {
 	}`
 	const post = await prisma.post({id})
 	let comments = await prisma.post({id}).comments().$fragment(fragment)
-	//onst comments = await prisma.comments({post}).$fragment(fragment)
+	//const comments = await prisma.comments({post}).$fragment(fragment)
 	res.json(comments)
 })
 

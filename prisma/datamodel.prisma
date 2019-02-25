@@ -1,0 +1,31 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String!
+  username: String!
+  password: String!
+  posts: [Post]
+}
+
+type Category {
+  id: ID! @unique
+  name: String!
+}
+
+type Comment {
+  id: ID! @unique
+  title: String!
+  content: String!
+  author: User!
+  post: Post!
+}
+
+type Post {
+  id: ID! @unique
+  title: String!
+  content: String!
+  author: User!
+  category: Category
+  comments: [Comment]
+  imageUrl: String!
+}

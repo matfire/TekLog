@@ -1,5 +1,5 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 import api from '../api'
 
@@ -49,7 +49,7 @@ class Login extends React.Component {
 						<MDBInput label="Type your password" icon="lock" group type="password" validate error="wrong" success="right" getValue={(value) => this.setState({password:value})}/>
 					</div>
 					<div className="text-center">
-        					<MDBBtn onClick={this.handleSubmit}>Login</MDBBtn>
+        					<MDBBtn onClick={this.handleSubmit}>Login</MDBBtn> or <Link to="/register">Create Account</Link>
         				</div>
 				</MDBCol>
 			</MDBRow>

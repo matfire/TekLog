@@ -239,8 +239,6 @@ export type PostOrderByInput =
   | "title_DESC"
   | "content_ASC"
   | "content_DESC"
-  | "imageUrl_ASC"
-  | "imageUrl_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -291,7 +289,6 @@ export interface PostCreateWithoutCommentsInput {
   content: String;
   author: UserCreateOneWithoutPostsInput;
   category?: CategoryCreateOneInput;
-  imageUrl: String;
 }
 
 export type CategoryWhereUniqueInput = AtLeastOne<{
@@ -301,7 +298,6 @@ export type CategoryWhereUniqueInput = AtLeastOne<{
 export interface PostUpdateManyDataInput {
   title?: String;
   content?: String;
-  imageUrl?: String;
 }
 
 export interface CommentUpdateManyDataInput {
@@ -452,7 +448,6 @@ export interface PostCreateWithoutAuthorInput {
   content: String;
   category?: CategoryCreateOneInput;
   comments?: CommentCreateManyWithoutPostInput;
-  imageUrl: String;
 }
 
 export interface UserUpdateInput {
@@ -513,7 +508,6 @@ export interface PostCreateInput {
   author: UserCreateOneWithoutPostsInput;
   category?: CategoryCreateOneInput;
   comments?: CommentCreateManyWithoutPostInput;
-  imageUrl: String;
 }
 
 export interface CommentCreateWithoutPostInput {
@@ -579,20 +573,6 @@ export interface PostScalarWhereInput {
   content_not_starts_with?: String;
   content_ends_with?: String;
   content_not_ends_with?: String;
-  imageUrl?: String;
-  imageUrl_not?: String;
-  imageUrl_in?: String[] | String;
-  imageUrl_not_in?: String[] | String;
-  imageUrl_lt?: String;
-  imageUrl_lte?: String;
-  imageUrl_gt?: String;
-  imageUrl_gte?: String;
-  imageUrl_contains?: String;
-  imageUrl_not_contains?: String;
-  imageUrl_starts_with?: String;
-  imageUrl_not_starts_with?: String;
-  imageUrl_ends_with?: String;
-  imageUrl_not_ends_with?: String;
   AND?: PostScalarWhereInput[] | PostScalarWhereInput;
   OR?: PostScalarWhereInput[] | PostScalarWhereInput;
   NOT?: PostScalarWhereInput[] | PostScalarWhereInput;
@@ -612,7 +592,6 @@ export interface PostUpdateWithoutCommentsDataInput {
   content?: String;
   author?: UserUpdateOneRequiredWithoutPostsInput;
   category?: CategoryUpdateOneInput;
-  imageUrl?: String;
 }
 
 export interface UserCreateWithoutPostsInput {
@@ -733,20 +712,6 @@ export interface PostWhereInput {
   comments_every?: CommentWhereInput;
   comments_some?: CommentWhereInput;
   comments_none?: CommentWhereInput;
-  imageUrl?: String;
-  imageUrl_not?: String;
-  imageUrl_in?: String[] | String;
-  imageUrl_not_in?: String[] | String;
-  imageUrl_lt?: String;
-  imageUrl_lte?: String;
-  imageUrl_gt?: String;
-  imageUrl_gte?: String;
-  imageUrl_contains?: String;
-  imageUrl_not_contains?: String;
-  imageUrl_starts_with?: String;
-  imageUrl_not_starts_with?: String;
-  imageUrl_ends_with?: String;
-  imageUrl_not_ends_with?: String;
   AND?: PostWhereInput[] | PostWhereInput;
   OR?: PostWhereInput[] | PostWhereInput;
   NOT?: PostWhereInput[] | PostWhereInput;
@@ -760,7 +725,6 @@ export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
 export interface PostUpdateManyMutationInput {
   title?: String;
   content?: String;
-  imageUrl?: String;
 }
 
 export interface PostUpdateWithoutAuthorDataInput {
@@ -768,7 +732,6 @@ export interface PostUpdateWithoutAuthorDataInput {
   content?: String;
   category?: CategoryUpdateOneInput;
   comments?: CommentUpdateManyWithoutPostInput;
-  imageUrl?: String;
 }
 
 export interface CommentUpdateManyMutationInput {
@@ -852,7 +815,6 @@ export interface PostUpdateInput {
   author?: UserUpdateOneRequiredWithoutPostsInput;
   category?: CategoryUpdateOneInput;
   comments?: CommentUpdateManyWithoutPostInput;
-  imageUrl?: String;
 }
 
 export interface UserUpdateOneRequiredWithoutPostsInput {
@@ -1073,7 +1035,6 @@ export interface Post {
   id: ID_Output;
   title: String;
   content: String;
-  imageUrl: String;
 }
 
 export interface PostPromise extends Promise<Post>, Fragmentable {
@@ -1093,7 +1054,6 @@ export interface PostPromise extends Promise<Post>, Fragmentable {
       last?: Int;
     }
   ) => T;
-  imageUrl: () => Promise<String>;
 }
 
 export interface PostSubscription
@@ -1115,7 +1075,6 @@ export interface PostSubscription
       last?: Int;
     }
   ) => T;
-  imageUrl: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PostSubscriptionPayload {
@@ -1147,7 +1106,6 @@ export interface PostPreviousValues {
   id: ID_Output;
   title: String;
   content: String;
-  imageUrl: String;
 }
 
 export interface PostPreviousValuesPromise
@@ -1156,7 +1114,6 @@ export interface PostPreviousValuesPromise
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   content: () => Promise<String>;
-  imageUrl: () => Promise<String>;
 }
 
 export interface PostPreviousValuesSubscription
@@ -1165,7 +1122,6 @@ export interface PostPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
   content: () => Promise<AsyncIterator<String>>;
-  imageUrl: () => Promise<AsyncIterator<String>>;
 }
 
 export interface User {

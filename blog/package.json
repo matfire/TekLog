@@ -12,6 +12,8 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-epic-spinners": "^0.2.1",
+    "react-file-base64": "^1.0.3",
+    "react-image-file": "^0.3.0",
     "react-jss": "^8.6.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3"
