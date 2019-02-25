@@ -122,4 +122,4 @@ app.post("/posts/:id/comments", async (req,res) => {
 	res.json(comment)
 })
 
-app.listen(4000, () => console.log("listening"))
+app.listen(4001, () => console.log("listening"))
